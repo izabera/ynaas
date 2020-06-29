@@ -1,4 +1,5 @@
 #!/bin/bash -e
 
 cd pages
-ncat -e ../ynaas -l 80
+ncat -e ../ynaas -kl 80
+#ncat -e ../ynaas -kl 443 --ssl &

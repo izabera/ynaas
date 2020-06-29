@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 host=ynaas.com
 IFS=$' \t\n\r'
@@ -8,6 +8,7 @@ yn=(yes no)
 read -r request _
 while read -r header value; do
     [[ $header = Host: ]] && host=$value
+    [[ $header = Content-Length: ]] && length=$value
     [[ $header ]] || break
 done
 
@@ -20,7 +21,9 @@ case $request in
         ;;
 
     POST)
-        IFS+=\& read -r subdomain yn
+        IFS+=\& read -r -n "${length?}" subdomain yn
+	yn=${yn#yn=}
+	subdomain=${subdomain#subdomain=}
         if [[ $yn = yes || $yn = no ]]; then
             subdomain=${subdomain//\/}
             subdomain=${subdomain,,}
@@ -36,5 +39,4 @@ case $request in
         ;;
 esac
 
-exec cat "$host"
-exec cat idk
+[[ -e $host ]] && cat "$host" || cat idk

@@ -1,5 +1,5 @@
 HTTP/1.1 200 OK
-X-recruiting: We're hiring!  Apply at https://hiring.ynaas.com
+X-recruiting: We're hiring!  Apply at http://hiring.ynaas.com
 
 <html>
 <head><title>IDK</title></head>
