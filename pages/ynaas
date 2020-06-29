@@ -1,0 +1,30 @@
+HTTP/1.1 200 OK
+X-recruiting: We're hiring!  Apply at http://hiring.ynaas.com
+
+<html>
+<head><title>YES NO AS A SERVICE</title></head>
+<body>
+examples:
+<a href="https://ischeesecakethebest.ynaas.com">
+https://ischeesecakethebest.ynaas.com
+</a>
+<br>
+<a href="https://dochemicalsturnthefrogsgay.ynaas.com">
+https://dochemicalsturnthefrogsgay.ynaas.com
+</a>
+<br>
+<a href="https://caniborrow100bucks.ynaas.com">
+https://caniborrow100bucks.ynaas.com
+</a>
+<br>
+make your own:
+<br>
+<form action="/" method="post">
+subdomain:
+<input type="text" name="subdomain">
+<input type="radio" name="yn" value="yes" checked="checked">yes
+<input type="radio" name="yn" value="no">no
+<input type="submit" value="create">
+</form>
+</body>
+</html>

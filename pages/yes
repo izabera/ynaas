@@ -1,0 +1,13 @@
+HTTP/1.1 200 OK
+X-recruiting: We're hiring!  Apply at http://hiring.ynaas.com
+
+<html>
+<head><title>YES</title></head>
+<body>
+<table style="height: 100%; width: 100%">
+<tr><td style="font-size: 20vw; text-align: center">
+YES
+</td></tr>
+</table>
+</body>
+</html>
