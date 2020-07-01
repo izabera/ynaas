@@ -12,9 +12,12 @@ while read -r header value; do
     [[ $header ]] || break
 done
 
+[[ $host ]] ||
+  exec printf 'HTTP/1.1 400 Bad Request\r\nConnection: close\r\n\r\n'
+
 case $request in
     HEAD)
-        exec printf 'HTTP/1.1 200 OK\r\n\r\n'
+        exec printf 'HTTP/1.1 200 OK\r\nConnection: close\r\n\r\n'
         ;;
 
     GET)
@@ -34,7 +37,7 @@ case $request in
             subdomain=${subdomain,,}
 
             ln "$yn" "$subdomain" &&
-            exec printf 'HTTP/1.1 302 Found\r\nLocation: http://%s.%s\r\n\r\n' "$subdomain" "$domain"
+            exec printf 'HTTP/1.1 302 Found\r\nConnection: close\r\nLocation: http://%s.%s\r\n\r\n' "$subdomain" "$domain"
         fi
         ;;
 
