@@ -1,3 +1,4 @@
 HTTP/1.1 302 Found
+Connection: close
 Location: http://www.youtube.com/watch?v=dQw4w9WgXcQ
 
