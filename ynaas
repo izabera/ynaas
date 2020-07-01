@@ -22,8 +22,8 @@ case $request in
 
     POST)
         IFS+=\& read -r -n "${length?}" subdomain yn
-	yn=${yn#yn=}
-	subdomain=${subdomain#subdomain=}
+        yn=${yn#yn=}
+        subdomain=${subdomain#subdomain=}
         if [[ $yn = yes || $yn = no ]]; then
             subdomain=${subdomain//\/}
             subdomain=${subdomain,,}
