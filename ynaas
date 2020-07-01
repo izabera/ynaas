@@ -13,6 +13,10 @@ while read -r header value; do
 done
 
 case $request in
+    HEAD)
+        exec printf 'HTTP/1.1 200 OK\r\n\r\n'
+        ;;
+
     GET)
         host=${host%:*} # strip port
         [[ $host = *.$domain ]] && host=${host%.$domain} || host=${host%%.*} # allow other names
@@ -35,7 +39,7 @@ case $request in
         ;;
 
     *)
-        printf 'HTTP/1.1 200 OK\r\n\r\n'
+        printf 'HTTP/1.1 501 Not Implemented\r\n\r\n'
         exit
         ;;
 esac
