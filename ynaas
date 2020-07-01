@@ -29,15 +29,15 @@ case $request in
         ;;
 
     POST)
-        IFS+=\& read -r -n "${length?}" subdomain yn
+        IFS+=\& read -r -n "${length?}" host yn
         yn=${yn#yn=}
-        subdomain=${subdomain#subdomain=}
+        host=${host#subdomain=}
         if [[ $yn = yes || $yn = no ]]; then
-            subdomain=${subdomain//\/}
-            subdomain=${subdomain,,}
+            host=${host//\/}
+            host=${host,,}
 
-            ln "$yn" "$subdomain" &&
-            exec printf 'HTTP/1.1 302 Found\r\nConnection: close\r\nLocation: http://%s.%s\r\n\r\n' "$subdomain" "$domain"
+            ln "$yn" "$host" &&
+            exec printf 'HTTP/1.1 302 Found\r\nConnection: close\r\nLocation: http://%s.%s\r\n\r\n' "$host" "$domain"
         fi
         ;;
 
