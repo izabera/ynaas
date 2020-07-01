@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-host=ynaas.com
+domain=127.0.0.1.nip.io
 IFS=$' \t\n\r'
 
 yn=(yes no)
@@ -14,8 +14,9 @@ done
 
 case $request in
     GET)
-        [[ $host = *.ynaas.com ]] && host=${host%.com}
-        host=${host%.*}
+        host=${host%:*} # strip port
+        [[ $host = *.$domain ]] && host=${host%.$domain} || host=${host%%.*} # allow other names
+        [[ $host = *.$domain ]] && host=${host%.$domain}
         host=${host//\/}
         host=${host,,}
         ;;
@@ -29,7 +30,7 @@ case $request in
             subdomain=${subdomain,,}
 
             ln "$yn" "$subdomain" &&
-            exec printf 'HTTP/1.1 302 Found\r\nLocation: http://%s.ynaas.com\r\n\r\n' "$subdomain"
+            exec printf 'HTTP/1.1 302 Found\r\nLocation: http://%s.%s\r\n\r\n' "$subdomain" "$domain"
         fi
         ;;
 
