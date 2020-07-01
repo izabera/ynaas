@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-domain=127.0.0.1.nip.io
+domain=ynaas.com
 IFS=$' \t\n\r'
 
 yn=(yes no)
